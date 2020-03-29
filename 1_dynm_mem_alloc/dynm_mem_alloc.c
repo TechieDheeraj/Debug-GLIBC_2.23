@@ -4,17 +4,17 @@
 
 /*---------------------------------------------------------------------------------------------
 
-								AUTHOR: Dheeraj Kakkar
-								FILE Ref: glibc2.23/malloc/malloc.c
-								Calling PATH:
-									malloc() -> _libc_malloc -> _int_malloc -> sysmalloc()
-									free()   -> _libc_free -> _int_free() 
+   AUTHOR: Dheeraj Kakkar
+   FILE Ref: glibc2.23/malloc/malloc.c
+   Calling PATH:
+      malloc() -> _libc_malloc -> _int_malloc -> sysmalloc()
+      free()   -> _libc_free -> _int_free() 
 
 ----------------------------------------------------------------------------------------------*//*
 
-								Analysis of Dynamic Memory Allocation
+   Analysis of Dynamic Memory Allocation
 
-											malloc()/free() 
+            malloc()/free() 
 
 ----------------------------------------------------------------------------------------------*//*
 
