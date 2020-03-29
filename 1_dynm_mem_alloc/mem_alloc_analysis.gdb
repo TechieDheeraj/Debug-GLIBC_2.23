@@ -1,5 +1,5 @@
->>> gcc -m32 -g hello.c -o hello
->>> gdb ./hello
+>>> gcc -m32 -g dynm_mem_alloc.c -o dynm_mem_alloc
+>>> gdb ./dynm_mem_alloc
 GNU gdb (Ubuntu 7.11.1-0ubuntu1~16.5) 7.11.1
 Copyright (C) 2016 Free Software Foundation, Inc.
 License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
@@ -14,13 +14,13 @@ Find the GDB manual and other documentation resources online at:
 <http://www.gnu.org/software/gdb/documentation/>.
 For help, type "help".
 Type "apropos word" to search for commands related to "word"...
-Reading symbols from ./hello...done.
-Reading in symbols for hello.c...done.
+Reading symbols from ./dynm_mem_alloc...done.
+Reading in symbols for dynm_mem_alloc.c...done.
 (gdb) 
 (gdb) dir /usr/src/glibc/glibc-2.23/malloc
 Source directories searched: /usr/src/glibc/glibc-2.23/malloc:$cdir:$cwd
 (gdb) b main
-Breakpoint 1 at 0x804844c: file hello.c, line 135.
+Breakpoint 1 at 0x804844c: file dynm_mem_alloc.c, line 135.
 (gdb) b malloc.c:3921
 No source file named malloc.c.
 Make breakpoint pending on future shared library load? (y or [n]) y
@@ -39,7 +39,6 @@ Breakpoint 2 (malloc.c:3921) pending.
 (gdb) b malloc
 Breakpoint 3 at 0x8048310
 (gdb) r
-Starting program: /vagrant/work/Lenovo_Current_ubuntu_home/Documents/ytube/just_c/part9/demo/hello 
 Reading symbols from /lib/ld-linux.so.2...Reading symbols from /usr/lib/debug//lib/i386-linux-gnu/ld-2.23.so...done.
 done.
 Reading in symbols for dl-minimal.c...done.
@@ -126,7 +125,7 @@ Reading symbols from /lib/i386-linux-gnu/libc.so.6...Reading symbols from /usr/l
 done.
 Reading in symbols for malloc.c...done.
 
-Breakpoint 1, main () at hello.c:135
+Breakpoint 1, main () at dynm_mem_alloc.c:135
 135	   char *ptr = NULL;
 (gdb) c
 Continuing.
@@ -165,7 +164,7 @@ $3 = (struct malloc_chunk **) 0x804b008
 $4 = 41
 (gdb) b main:140
 Note: breakpoint 1 also set at pc 0x804844c.
-Breakpoint 4 at 0x804844c: file hello.c, line 135.
+Breakpoint 4 at 0x804844c: file dynm_mem_alloc.c, line 135.
 (gdb) si
 0xf7e82b89	3921	    free_perturb (chunk2mem(p), size - 2 * SIZE_SZ);
 (gdb) 
@@ -198,10 +197,9 @@ Continuing.
 [Inferior 1 (process 17992) exited normally]
 (gdb) delete breakpoints 
 Delete all breakpoints? (y or n) y
-(gdb) b hello.c:140
-Breakpoint 5 at 0x8048471: file hello.c, line 140.
+(gdb) b dynm_mem_alloc.c:140
+Breakpoint 5 at 0x8048471: file dynm_mem_alloc.c, line 140.
 (gdb) r
-Starting program: /vagrant/work/Lenovo_Current_ubuntu_home/Documents/ytube/just_c/part9/demo/hello 
 Reading symbols from /lib/ld-linux.so.2...Reading symbols from /usr/lib/debug//lib/i386-linux-gnu/ld-2.23.so...done.
 done.
 Reading symbols from system-supplied DSO at 0xf7fd8000...(no debugging symbols found)...done.
@@ -209,7 +207,7 @@ Reading in symbols for rtld.c...done.
 Reading symbols from /lib/i386-linux-gnu/libc.so.6...Reading symbols from /usr/lib/debug//lib/i386-linux-gnu/libc-2.23.so...done.
 done.
 
-Breakpoint 5, main () at hello.c:140
+Breakpoint 5, main () at dynm_mem_alloc.c:140
 140	   return 0;
 (gdb) p ptr
 $6 = 0x804b008 ""
@@ -254,11 +252,11 @@ Dump of assembler code for function main:
    0x0804847d <+66>:	ret    
 End of assembler dump.
 (gdb) b *0x0804847d
-Breakpoint 6 at 0x804847d: file hello.c, line 141.
+Breakpoint 6 at 0x804847d: file dynm_mem_alloc.c, line 141.
 (gdb) c
 Continuing.
 
-Breakpoint 6, 0x0804847d in main () at hello.c:141
+Breakpoint 6, 0x0804847d in main () at dynm_mem_alloc.c:141
 141	}
 (gdb) x/8xw 0x804b008-4
 0x804b004:	0x00000029	0x00000000	0x00000000	0x00000000
